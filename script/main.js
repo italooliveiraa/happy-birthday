@@ -343,7 +343,7 @@ function executeOtherScripts() {
 }
 
 // Exemplo de uso: Definindo o horário de liberação para 15:00:00 (3 PM)
-setTargetTime(20, 11, 0);
+setTargetTime(0, 0, 0);
 
 document.addEventListener('DOMContentLoaded', updateCountdown);
 
