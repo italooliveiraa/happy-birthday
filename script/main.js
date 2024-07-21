@@ -1,39 +1,4 @@
-let targetDate;
 
-function setTargetTime(hours, minutes, seconds) {
-    const now = new Date();
-    targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, seconds, 0);
-    if (targetDate < now) {
-        // Se o horário alvo já passou para hoje, ajusta para o próximo dia
-        targetDate.setDate(targetDate.getDate());
-    }
-}
-
-function updateCountdown() {
-    const now = new Date();
-    const timeDifference = targetDate - now;
-
-    if (timeDifference <= 0) {
-        document.getElementById('celebrateButton').classList.add('enabled');
-        document.getElementById('celebrateButton').disabled = false;
-        document.getElementById('celebrateButton').textContent = 'Hora de Celebrar!';
-        document.getElementById('clock').textContent = '00:00:00';
-        return;
-    }
-
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-    document.getElementById('clock').textContent = 
-        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-
-    setTimeout(updateCountdown, 1000);
-}
-
-function executeOtherScripts() {
-  document.getElementById('clock').style.display = 'none';
-  document.getElementById('celebrateButton').style.display = 'none';
   const fetchData = () => {
     fetch("customize.json")
       .then(data => data.json())
@@ -337,21 +302,7 @@ function executeOtherScripts() {
     });
   };
   
-  // Run fetch and animation in sequence
   fetchData();
-    // activateOtherFeatures(); 
-}
-
-// Exemplo de uso: Definindo o horário de liberação para 15:00:00 (3 PM)
-setTargetTime(0, 0, 0);
-
-document.addEventListener('DOMContentLoaded', updateCountdown);
-
-document.getElementById('celebrateButton').addEventListener('click', function() {
-    if (!this.disabled) {
-        executeOtherScripts();
-    }
-});
 
 
 
