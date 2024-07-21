@@ -5,7 +5,7 @@ function setTargetTime(hours, minutes, seconds) {
     targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, seconds, 0);
     if (targetDate < now) {
         // Se o horário alvo já passou para hoje, ajusta para o próximo dia
-        targetDate.setDate(targetDate.getDate() + 1);
+        targetDate.setDate(targetDate.getDate());
     }
 }
 
